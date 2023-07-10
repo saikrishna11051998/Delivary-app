@@ -8,7 +8,8 @@ const BottomNav = ({ navigation }) => {
     return (
         <View style={styles.container}>
             {/* <Text>BottomNav</Text> */}
-            <View style={styles.btncon1}>
+            <View 
+            style={styles.btncon1}>
                 <AntDesign name="home" size={30} color="black" style={styles.icon1} onPress={() => { navigation.navigate('home') }} />
 
             </View>
