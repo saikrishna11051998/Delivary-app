@@ -5,11 +5,12 @@ import { MaterialCommunityIcons } from '@expo/vector-icons';
 import { FontAwesome5 } from '@expo/vector-icons';
 import { colors } from '../globals/style';
 import { Ionicons } from '@expo/vector-icons';
+// import AppStack from '../globals/navigation/AuthStack';
 const HomeHeadNav = ({ navigation }) => {
     return (
         <View style={styles.container}>
             <Fontisto name="nav-icon-list-a" size={20} color="black" style={styles.myIcon} 
-            
+            // onPress={() => { navigation.navigate('AuthStack') }}
           />
             <View style={styles.containerin}>
                 <Text style={styles.mytext}>Foodie</Text>

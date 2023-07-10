@@ -10,9 +10,9 @@ import {
   Image,
   ScrollView,
   Dimensions,
-  TouchableOpacity
+  TouchableOpacity,
 } from "react-native";
-
+//import AppStack from "./globals/navigation/AuthStack";
 import HomeHeadNav from "./components/HomeHeadNav";
 import Categories from "./components/Categories";
 import OfferSlider from "./components/OfferSlider";
@@ -20,8 +20,8 @@ import { colors } from "./globals/style";
 import Cardslider from "./components/Cardslider";
 import { firebase } from "../../Zomoto/Firebase/FirebaseConfig";
 import BottomNav from "./components/BottomNav";
-import { Ionicons } from '@expo/vector-icons';
-  const HomeScreen = ({ navigation}) => {
+import { Ionicons } from "@expo/vector-icons";
+const HomeScreen = ({ navigation }) => {
   const [foodData, setFoodData] = useState([]);
   const [VegData, setVegData] = useState([]);
   const [NonVegData, setNonVegData] = useState([]);
@@ -43,81 +43,75 @@ import { Ionicons } from '@expo/vector-icons';
   const [search, setSearch] = useState("");
   // console.log(search)
   return (
-    
     <View style={styles.container}>
-      
       <StatusBar />
 
-      <HomeHeadNav navigation={navigation}/>
-      
+      <HomeHeadNav navigation={navigation} />
+
       <View style={styles.bottomnav}>
-     
-     
-
-
-      <BottomNav navigation={navigation}/>
+        <BottomNav navigation={navigation} />
       </View>
-     
+
       <ScrollView>
-
-        
-      <View style={styles.searchbox}>
-        <AntDesign
-          name="search1"
-          size={24}
-          color="black"
-          style={styles.searchicon}
-        />
-
-        <TextInput
-          style={styles.input}
-          placeholder="search"
-          onChangeText={(text) => {
-            setSearch(text);
-          }}
-        />
-      </View>
-      {search != "" && (
-        <View style={styles.searchresultsouter}>
-          {/* <Text>Your typed Something</Text> */}
-          <FlatList
-            style={styles.searchresultsinner}
-            data={foodData}
-            renderItem={({ item }) => {
-              if (
-                item.foodName.toLowerCase().includes(search.toLocaleLowerCase())
-              ) {
-                return (
-                  <View style={styles.searchresult}>
-                    <AntDesign name="arrowright" size={24} color="black" />
-                    <Text style={styles.searchresulttext}>{item.foodName}</Text>
-                  </View>
-                );
-              }
-            }}
+        <View style={styles.searchbox}>
+          <AntDesign
+            name="search1"
+            size={24}
+            color="black"
+            style={styles.searchicon}
           />
 
-          
+          <TextInput
+            style={styles.input}
+            placeholder="search"
+            onChangeText={(text) => {
+              setSearch(text);
+            }}
+          />
         </View>
-        
-      )}
-      
-      <Categories />
-      <OfferSlider />
-      {/* <Text>HomeScreen</Text> */}
+        {search != "" && (
+          <View style={styles.searchresultsouter}>
+            {/* <Text>Your typed Something</Text> */}
+            <FlatList
+              style={styles.searchresultsinner}
+              data={foodData}
+              renderItem={({ item }) => {
+                if (
+                  item.foodName
+                    .toLowerCase()
+                    .includes(search.toLocaleLowerCase())
+                ) {
+                  return (
+                    <View style={styles.searchresult}>
+                      <AntDesign name="arrowright" size={24} color="black" />
+                      <Text style={styles.searchresulttext}>
+                        {item.foodName}
+                      </Text>
+                    </View>
+                  );
+                }
+              }}
+            />
+          </View>
+        )}
 
-      <Cardslider title={"Today's Special"} data={foodData} navigation={navigation}/>
-      <Cardslider title={"NonVeg Data "} data={NonVegData} navigation={navigation}/>
-      <Cardslider title={"Veg Data"} data={VegData} navigation={navigation}/>
-     
-     
-     
+        <Categories />
+        <OfferSlider />
+        {/* <Text>HomeScreen</Text> */}
+
+        <Cardslider
+          title={"Today's Special"}
+          data={foodData}
+          navigation={navigation}
+        />
+        <Cardslider
+          title={"NonVeg Data "}
+          data={NonVegData}
+          navigation={navigation}
+        />
+        <Cardslider title={"Veg Data"} data={VegData} navigation={navigation} />
       </ScrollView>
-     
-
-
     </View>
-     
   );
 };
 
@@ -171,12 +165,11 @@ const styles = StyleSheet.create({
     color: colors.text1,
   },
   bottomnav: {
-    position: 'absolute',
+    position: "absolute",
     bottom: 0,
-    width: '100%',
+    width: "100%",
     backgroundColor: colors.col1,
     zIndex: 20,
-},
-
+  },
 });
 export default HomeScreen;
